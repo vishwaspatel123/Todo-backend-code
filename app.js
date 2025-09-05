@@ -29,7 +29,7 @@ const PORTs = process.env.PORT || 3000;
 mongoose
   .connect(databasepath)
   .then(() => {
-    app.listen(PORT, () => {
+    app.listen(PORTs, () => {
       console.log(`Server running on http://localhost:${PORTs}`);
     });
   })
