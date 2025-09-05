@@ -1,0 +1,11 @@
+const express = require("express");
+const todoitemRouter = express.Router();
+
+const todocontroller = require("../controllers/todocontroller");
+
+todoitemRouter.post("/", todocontroller.postitem);
+todoitemRouter.get("/", todocontroller.getitem);
+todoitemRouter.delete("/:id", todocontroller.deleteitem);
+todoitemRouter.put("/:id/completed", todocontroller.updateitem);
+
+module.exports = todoitemRouter;
