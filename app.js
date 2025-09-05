@@ -24,13 +24,13 @@ app.use(express.static(path.join(rootDir, "public")));
 app.use("/api/todo", todoitemRouter);
 
 // ✅ Use Render's PORT
-const PORT = process.env.PORT || 3000;
+const PORTs = process.env.PORT || 3000;
 
 mongoose
   .connect(databasepath)
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+      console.log(`Server running on http://localhost:${PORTs}`);
     });
   })
   .catch((err) => {
