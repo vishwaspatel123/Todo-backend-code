@@ -1,2 +1,2 @@
-# Todo-List-Project
-This is my todo list project which i make using mern stack 
+# Todo-List-Backend-code
+This is my todo list project backend code which i make using nodejs , expressjs and mongodb  
