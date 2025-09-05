@@ -1,34 +1,38 @@
 // Core Module
 const path = require("path");
 
-// External Module
+// External Modules
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
+// MongoDB connection string
 const databasepath =
   "mongodb+srv://vishwaspatel0305:Vishwas123@cluster0.b1csjsc.mongodb.net/todo?retryWrites=true&w=majority&appName=Cluster0";
 
-//Local Module
+// Local Modules
 const todoitemRouter = require("./routes/todoitemRouters");
 const rootDir = require("./utils/pathUtil");
 
 const app = express();
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(rootDir, "public")));
 
 app.use("/api/todo", todoitemRouter);
 
-const PORT = 3000;
+// ✅ Use Render's PORT
+const PORT = process.env.PORT || 3000;
+
 mongoose
   .connect(databasepath)
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Server running on address http://localhost:${PORT}`);
+      console.log(`Server running on http://localhost:${PORT}`);
     });
   })
   .catch((err) => {
-    console.log("error in connecting to mongo", err);
+    console.log("Error connecting to MongoDB:", err);
   });
