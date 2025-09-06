@@ -6,7 +6,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-// MongoDB connection string
+// MongoDB connection stringS
 const databasepath =
   "mongodb+srv://vishwaspatel0305:Vishwas123@cluster0.b1csjsc.mongodb.net/todo?retryWrites=true&w=majority&appName=Cluster0";
 
