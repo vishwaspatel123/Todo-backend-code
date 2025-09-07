@@ -22,14 +22,34 @@ exports.deleteitem = async (req, res, next) => {
   res.json({ id });
 };
 
+exports.completeitem = async (req, res, next) => {
+  const { id } = req.params;
+  const updateitem = await todoitem.findById(id);
+  if (!updateitem) {
+    return res.status(404).json({ error: "Item not found" });
+  }
+  updateitem.completed = !req.body.completed;
+  await updateitem.save();
+  res.json(updateitem);
+};
+
+exports.gettask = async (req, res, next) => {
+  const { id } = req.params;
+  const taskitem = await todoitem.findById(id);
+  if (!taskitem) {
+    return res.status(404).json({ error: "Item not found" });
+  }
+  res.json(taskitem);
+};
+
 exports.updateitem = async (req, res, next) => {
   const { id } = req.params;
   const updateitem = await todoitem.findById(id);
   if (!updateitem) {
     return res.status(404).json({ error: "Item not found" });
   }
-  updateitem.completed =
-    req.body.completed !== undefined ? req.body.completed : true;
+  updateitem.task = req.body.task || updateitem.task;
+  updateitem.date = req.body.date || updateitem.date;
   await updateitem.save();
   res.json(updateitem);
 };
